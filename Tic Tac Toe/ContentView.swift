@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var moves = Array(repeating: "", count: 9)
+    @State private var xTurn = true
     var body: some View {
         VStack {
             LazyVGrid(columns: Array(repeating: GridItem(.fixed(120)), count: 3)) {
@@ -23,7 +24,12 @@ struct ContentView: View {
                        .frame(width: 120, height: 120, alignment: .center)
                        .cornerRadius(30)
                        .onTapGesture {
-                           moves[index] = "X"
+                           if moves[index] == "" {
+                               
+                               
+                               moves[index] = xTurn ? "X" : "O"
+                               xTurn.toggle()
+                           }
                        }
                    
                    
